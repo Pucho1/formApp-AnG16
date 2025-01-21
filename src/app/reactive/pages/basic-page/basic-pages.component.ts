@@ -1,5 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  Component, type OnInit } from '@angular/core';
+import { ValidatorsService } from '../../../shared/services/validators.service';
 
 @Component({
     selector: 'app-basic-pages',
@@ -9,7 +10,11 @@ export class BasicPagesComponent implements OnInit {
 
   public myForm: FormGroup = new FormGroup({});
 
-  constructor( private formb: FormBuilder) {};
+  constructor(
+    private formb: FormBuilder,
+    private validatorsService: ValidatorsService
+
+  ) {};
 
   initForm(): void{
     this.myForm = this.formb.group({
@@ -20,8 +25,7 @@ export class BasicPagesComponent implements OnInit {
   };
 
   isInvalidField(field: string): boolean | null{
-    if(!this.myForm.controls[field]) return null;
-    return this.myForm.controls[field].errors && this.myForm.controls[field].touched;
+    return this.validatorsService.isInvalidField(this.myForm, field);
   };
 
   getFieldError(field: string): string| null{

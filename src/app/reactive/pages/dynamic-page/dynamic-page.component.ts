@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidatorsService } from '../../../shared/services/validators.service';
 
 @Component({
     selector: 'app-dynamic-page',
@@ -17,8 +18,10 @@ export class DynamicPageComponent implements OnInit {
 
   public newFieldGame: FormControl = new FormControl('', Validators.required);
 
-
-  constructor( private formb: FormBuilder) {};
+  constructor(
+    private formb: FormBuilder,
+    private validatorsService: ValidatorsService
+  ) {};
 
   initForm(): void{
     this.myForm = this.formb.group({
@@ -35,8 +38,7 @@ export class DynamicPageComponent implements OnInit {
   };
 
   isInvalidField(field: string): boolean | null{
-    if(!this.myForm.controls[field]) return null;
-    return this.myForm.controls[field].errors && this.myForm.controls[field].touched;
+    return this.validatorsService.isInvalidField(this.myForm, field);
   };
 
   isInvalidFieldArry(filedArry: FormArray, index: number): boolean | null{

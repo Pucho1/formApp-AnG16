@@ -34,7 +34,7 @@
                       formControlName="email"
                     >
                     <span *ngIf="isInvalidField('email')" class="form-text text-danger">
-                        mensaje de error del email
+                        {{getFieldError('email')}}
                     </span>
                 </div>
             </div>
@@ -116,6 +116,7 @@
 
 <h5>Email</h5>
 <pre>{{ myForm.value.email | json }}</pre>
+<pre>{{ myForm.controls['email'].errors | json }}</pre>
 
 <h5>Username</h5>
 <pre>{{ myForm.controls['userName'].errors| json }}</pre>

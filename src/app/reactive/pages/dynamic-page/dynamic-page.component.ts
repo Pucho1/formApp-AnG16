@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../shared/services/validators.service';
@@ -48,26 +47,7 @@ export class DynamicPageComponent implements OnInit {
   };
 
   getFieldError(field: string): string| null{
-
-    if(!this.myForm.controls[field].errors) return null;
-
-    const errors = this.myForm.controls[field].errors || {};
-
-    const keys = Object.keys(errors);
-
-    for (const element of keys) {
-      switch (element) {
-        case 'required':
-          return 'Este campo es requerido';
-
-          case 'minlength':
-          return `Minimo ${errors['minlength'].requiredLength} caracters.`;
-
-        default:
-          break;
-      };
-    };
-    return null;
+    return this.validatorsService.getFieldError(this.myForm, field);
   };
 
   onDeleteFavorite(index: number): void {

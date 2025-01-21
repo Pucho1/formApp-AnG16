@@ -26,4 +26,34 @@ export class ValidatorsService {
     return fomr.controls[field].errors && fomr.controls[field].touched;
   };
 
+  getFieldError(fomr: FormGroup, field: string): string| null{
+
+    if(!fomr.controls[field].errors) return null;
+
+    const errors = fomr.controls[field].errors || {};
+
+    const keys = Object.keys(errors);
+
+    for (const element of keys) {
+      switch (element) {
+        case 'required':
+          return 'Este campo es requerido';
+
+        case 'minlength':
+          return `Minimo ${errors['minlength'].requiredLength} caracters.`;
+
+        case 'emailTaken':
+          return `El email ya se esta usando`;
+
+        case 'pattern':
+          return `El formato del campo es incorrecto`;
+
+        default:
+          break;
+      };
+    };
+
+    return null;
+  };
+
 };

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 @Injectable( { providedIn: 'root' } )
 
@@ -26,11 +26,11 @@ export class ValidatorsService {
     return fomr.controls[field].errors && fomr.controls[field].touched;
   };
 
-  getFieldError(fomr: FormGroup, field: string): string| null{
+  getFieldError(fomr: AbstractControl, field: string): string| null{
 
-    if(!fomr.controls[field].errors) return null;
+    if(!fomr.get(field)?.errors) return null;
 
-    const errors = fomr.controls[field].errors || {};
+    const errors = fomr.get(field)?.errors || {};
 
     const keys = Object.keys(errors);
 
@@ -54,6 +54,25 @@ export class ValidatorsService {
     };
 
     return null;
+  };
+
+  isFieldOneEqualFielTwo(field1: string, field2: string) {
+
+    // Devuelve una funcion en la que tengo acceso al formulario completo
+    // para hacerlo asincrono la funcion es la que debe devover algo que esea asincrono el esto es igual
+    return (form: AbstractControl) : ValidationErrors | null => {
+
+      const field1Value = form.get(field1)?.value;
+      const field2Value = form.get(field2)?.value;
+
+      if( field1Value !== field2Value ) {
+        form.get(field1)?.setErrors( { notEquals: true } )
+        return {notEquals: true};
+      };
+
+      form.get(field1)?.setErrors( null );
+      return null;
+    };
   };
 
 };

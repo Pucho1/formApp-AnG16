@@ -26,6 +26,10 @@ export class RegisterPagesComponent implements OnInit {
       userName: ['',[ Validators.required, this.validatorsService.cantByStrider]],
       password: ['', [ Validators.required, Validators.minLength(8) ] ],
       confirmPassword: ['', [ Validators.required, Validators.minLength(8) ] ],
+    }, {
+      Validators: [
+        this.validatorsService
+      ]
     });
   };
 

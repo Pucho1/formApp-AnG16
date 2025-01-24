@@ -18,6 +18,7 @@ export class SideMenuComponent {
     { title: 'Basicos', router: './reactive/basics'},
     { title: 'Dinamicos', router: './reactive/dynamic'},
     { title: 'Switches', router: './reactive/switches'},
+    { title: 'Selectors', router: './reactive/selector'},
   ];
 
 

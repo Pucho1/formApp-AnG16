@@ -6,6 +6,7 @@ import { ReactiveRoutingModule } from './reactive-routing.module';
 import { BasicPagesComponent } from './pages/basic-page/basic-pages.component';
 import { DynamicPageComponent } from './pages/dynamic-page/dynamic-page.component';
 import { SwitchesPageComponent } from './pages/switches-page/switches-page.component';
+import { SelectorPageComponent } from './pages/countries-pages/pages/selector-page/selector-page.component';
 
 
 
@@ -13,7 +14,8 @@ import { SwitchesPageComponent } from './pages/switches-page/switches-page.compo
   declarations: [
     BasicPagesComponent,
     DynamicPageComponent,
-    SwitchesPageComponent
+    SwitchesPageComponent,
+    SelectorPageComponent
   ],
   imports: [
     CommonModule,

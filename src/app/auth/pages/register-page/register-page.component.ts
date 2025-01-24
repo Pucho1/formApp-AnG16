@@ -48,5 +48,4 @@ export class RegisterPagesComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
   };
-
 };

@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    environment {
+        REPO_URL = 'https://github.com/Pucho1/formApp-AnG16.git'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code...'
+                git-branch: 'main',
+                credentialsId: 'GitCredentials',
+                url: REPO_URL
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building....'
+                sh 'npm ci || npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm run test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}

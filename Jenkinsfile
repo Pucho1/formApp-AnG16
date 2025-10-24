@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out code...'
-                git-branch: 'main',
+                git branch: 'main',
                 credentialsId: 'GitCredentials',
                 url: REPO_URL
             }

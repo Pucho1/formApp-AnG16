@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    envairoment {
+        RepoURL = ''
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code...'
+                git-branch: 'main',
+                credentialsId: 'GitCredentials',
+                url:'':
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}

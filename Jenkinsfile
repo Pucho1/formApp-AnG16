@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         REPO_URL = 'https://github.com/Pucho1/formApp-AnG16.git'
+        SCANNER_SONAR = tool 'SonarScanner'
     }
 
     stages {
@@ -26,6 +27,15 @@ pipeline {
             steps {
                 echo 'Testing...'
                 sh 'npm run test'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                echo 'Running SonarQube analysis...'
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh "${SCANNER_SONAR}/bin/sonar-scanner"
+                }
             }
         }
 

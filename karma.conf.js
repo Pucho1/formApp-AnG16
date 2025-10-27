@@ -1,8 +1,8 @@
-// karma.conf.js
 module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+
     browsers: ['ChromeHeadlessCI'],
     customLaunchers: {
       ChromeHeadlessCI: {
@@ -16,6 +16,15 @@ module.exports = function (config) {
         ]
       }
     },
+
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'), // ✅ INDISPENSABLE
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma')
+    ],
+
     reporters: ['progress', 'kjhtml'],
     singleRun: true,
     restartOnFileChange: false,

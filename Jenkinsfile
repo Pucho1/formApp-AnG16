@@ -26,7 +26,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'ng test'
+                sh 'npm run test'
             }
         }
 

@@ -89,6 +89,7 @@
               "zone.js",
               "zone.js/testing"
             ],
+            "codeCoverage": true,
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [

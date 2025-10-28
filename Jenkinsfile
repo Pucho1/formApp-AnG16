@@ -40,6 +40,14 @@ pipeline {
             }
         }
 
+        stage('Check Credential') {
+          steps {
+            withCredentials([string(credentialsId: 'Snik_credentials', variable: 'SNYK_TOKEN')]) {
+              sh 'echo "Token length: ${#SNYK_TOKEN}"'
+            }
+          }
+        }
+
         stage('Snyk Test') {
           steps {
             snykSecurity(

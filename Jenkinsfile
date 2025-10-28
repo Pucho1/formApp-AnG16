@@ -44,7 +44,7 @@ pipeline {
           steps {
             snykSecurity(
                 snykInstallation: 'Snyk_config',
-                snykTokenId: 'Snyk_Credential',
+                snykTokenId: 'Snik_credentials',
                 // otros parámetros opcionales pueden ser añadidos aquí
             )
           }

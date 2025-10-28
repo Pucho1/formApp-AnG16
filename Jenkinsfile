@@ -40,6 +40,16 @@ pipeline {
             }
         }
 
+        stage('Snyk Test') {
+          steps {
+            snykSecurity(
+                snykInstallation: 'Snyk_config',
+                snykTokenId: 'Snyk_Credential',
+                // otros parámetros opcionales
+            )
+          }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying...'

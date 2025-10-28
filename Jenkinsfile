@@ -4,7 +4,7 @@ pipeline {
     environment {
         REPO_URL = 'https://github.com/Pucho1/formApp-AnG16.git'
         SCANNER_SONAR = tool "SonarScanner"
-        NODE_ENV = "production"
+        // NODE_ENV = "production"
     }
 
     stages {

@@ -57,6 +57,7 @@ pipeline {
                 npx snyk test
               '''
             }
+            // Alternativamente, si tienes el plugin de Snyk instalado en Jenkins y no falla, puedes usar:
             // snykSecurity(
             //     snykInstallation: 'Snyk_config',
             //     snykTokenId: 'Snik_credentials',

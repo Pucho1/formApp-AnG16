@@ -19,6 +19,7 @@ pipeline {
     stage('Checkout') {
         steps {
             echo 'Checking out code...'
+            sh 'which git' // <-- Línea de diagnóstico
             git branch: 'main',
             credentialsId: 'GitCredentials',
             url: REPO_URL

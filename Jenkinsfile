@@ -8,6 +8,14 @@ pipeline {
   }
 
   stages {
+    stage('Clean Workspace') {
+      steps {
+          echo 'Cleaning up the workspace to ensure a fresh start...'
+          // Borra todo el contenido del workspace.
+          // Esto fuerza un 'git clone' limpio, eliminando problemas de permisos.
+          deleteDir()
+      }
+    }
     stage('Checkout') {
         steps {
             echo 'Checking out code...'

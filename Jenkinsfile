@@ -50,11 +50,18 @@ pipeline {
 
         stage('Snyk Test') {
           steps {
-            snykSecurity(
-                snykInstallation: 'Snyk_config',
-                snykTokenId: 'Snik_credentials',
-                // otros parámetros opcionales pueden ser añadidos aquí
-            )
+            withCredentials([string(credentialsId: 'Snik_credentials', variable: 'SNYK_TOKEN')]) {
+              sh '''
+                npm install -g snyk
+                snyk auth $SNYK_TOKEN
+                snyk test
+              '''
+            }
+            // snykSecurity(
+            //     snykInstallation: 'Snyk_config',
+            //     snykTokenId: 'Snik_credentials',
+            //     // otros parámetros opcionales pueden ser añadidos aquí
+            // )
           }
         }
 

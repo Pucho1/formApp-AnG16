@@ -51,10 +51,14 @@ pipeline {
         stage('Snyk Test') {
           steps {
             withCredentials([string(credentialsId: 'Snik_credentials', variable: 'SNYK_TOKEN')]) {
+              // snyk auth <tu_token> ----> Autentica Jenkins (el agente) con tu cuenta de Snyk usando tu token personal.
+              // snyk test ----> Ejecuta un análisis de seguridad en el proyecto actual.
               sh '''
                 npm install snyk --no-save
                 npx snyk auth $SNYK_TOKEN
                 npx snyk test
+                npx snyk monitor
+                npx snyk test --severity-threshold=high
               '''
             }
             // Alternativamente, si tienes el plugin de Snyk instalado en Jenkins y no falla, puedes usar:

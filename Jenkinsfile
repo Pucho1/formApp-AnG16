@@ -52,9 +52,9 @@ pipeline {
           steps {
             withCredentials([string(credentialsId: 'Snik_credentials', variable: 'SNYK_TOKEN')]) {
               sh '''
-                npm install -g snyk
-                snyk auth $SNYK_TOKEN
-                snyk test
+                npm install snyk --no-save
+                npx snyk auth $SNYK_TOKEN
+                npx snyk test
               '''
             }
             // snykSecurity(

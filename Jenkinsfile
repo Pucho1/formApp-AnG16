@@ -8,24 +8,7 @@ pipeline {
   }
 
 
-
-
   stages {
-    // stage('Clean Workspace') {
-    //   steps {
-    //       echo 'Cleaning up the workspace to ensure a fresh start...'
-    //       // Borra todo el contenido del workspace.
-    //       // Esto fuerza un 'git clone' limpio, eliminando problemas de permisos.
-    //       deleteDir()
-    //   }
-    // }
-    // stage('Fix Git Context') {
-    //   steps {
-    //       dir("${env.WORKSPACE}") {
-    //           sh 'git rev-parse --is-inside-work-tree'
-    //       }
-    //   }
-    // }
     stage('Checkout') {
         steps {
             echo 'Checking out code...'

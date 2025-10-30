@@ -78,8 +78,8 @@ pipeline {
           script {
             sh """
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                docker tag form-app:${BUILD_NUMBER} $DOCKER_USER/form-app:${BUILD_NUMBER}
                 docker push $DOCKER_USER/form-app:${BUILD_NUMBER}
+                docker push $DOCKER_USER/form-app:latest
             """
           }
         }

@@ -7,6 +7,9 @@ pipeline {
       // NODE_ENV = "production"
   }
 
+
+
+
   stages {
     stage('Clean Workspace') {
       steps {
@@ -14,6 +17,13 @@ pipeline {
           // Borra todo el contenido del workspace.
           // Esto fuerza un 'git clone' limpio, eliminando problemas de permisos.
           deleteDir()
+      }
+    }
+    stage('Fix Git Context') {
+      steps {
+          dir("${env.WORKSPACE}") {
+              sh 'git rev-parse --is-inside-work-tree'
+          }
       }
     }
     stage('Checkout') {

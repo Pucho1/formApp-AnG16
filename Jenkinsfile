@@ -74,15 +74,15 @@ pipeline {
 
     stage('Push Docker image') {
       steps {
-          withCredentials([usernamePassword(credentialsId: 'dockerHub_credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-              script {
-                  sh """
-                      echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                      docker tag form-App:${BUILD_NUMBER} $DOCKER_USER/form-App:${BUILD_NUMBER}
-                      docker push $DOCKER_USER/form-App:${BUILD_NUMBER}
-                  """
-              }
+        withCredentials([usernamePassword(credentialsId: 'dockerHub_credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          script {
+            sh """
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                docker tag form-app:${BUILD_NUMBER} $DOCKER_USER/form-app:${BUILD_NUMBER}
+                docker push $DOCKER_USER/form-app:${BUILD_NUMBER}
+            """
           }
+        }
       }
     }
 

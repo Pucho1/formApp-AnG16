@@ -68,6 +68,7 @@ pipeline {
         steps {
             script {
                 docker.build("pucho1/form-app:${env.BUILD_NUMBER}")
+                docker.build("pucho1/form-app:latest")
             }
         }
     }

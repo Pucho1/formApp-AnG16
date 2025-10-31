@@ -67,7 +67,7 @@ pipeline {
     stage('Build Docker Image') {
         steps {
             script {
-                docker.build("mi-app:${env.BUILD_NUMBER}")
+                docker.build("pucho1/form-app:${env.BUILD_NUMBER}")
             }
         }
     }

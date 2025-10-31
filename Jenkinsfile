@@ -86,5 +86,20 @@ pipeline {
         }
       }
     }
+
+    stage('Trigger DigitalOcean Redeploy') {
+      steps {
+        withCredentials([string(credentialsId: 'Digital-Ocean-Key', variable: 'DO_TOKEN')]) {
+          sh '''
+            echo "🚀 Triggering redeploy on DigitalOcean..."
+            curl -X POST \
+              -H "Authorization: Bearer ${DO_TOKEN}" \
+              -H "Content-Type: application/json" \
+              "https://api.digitalocean.com/v2/apps/2f15fe79-e741-4419-a297-a72e55ef12e1/deployments"
+          '''
+        }
+      }
+    }
+
   }
 }
